@@ -1,185 +1,166 @@
-# Laravel API + Next.js Проект
+Laravel API + Next.js Project
+-------------
+Login :
+email: k@gmail.com
+password: 12345678
+-------------
+🏗️ Architecture
 
-Сучасний веб-додаток з модульною архітектурою, побудований на Laravel (API backend) та Next.js (frontend) з використанням TypeScript та TailwindCSS.
+Backend: Laravel 11 (API-only)
 
-## 🏗️ Архітектура
+Frontend: Next.js 15 + TypeScript + React 19
 
-- **Backend**: Laravel 11 (тільки API)
-- **Frontend**: Next.js 15 + TypeScript + React 19
-- **Стилі**: TailwindCSS 4
-- **База даних**: SQLite (для розробки)
+Styles: TailwindCSS 4
 
-## 🚀 Швидкий старт
+Database: SQLite (for development)
 
-### Вимоги
-- PHP 8.2+
-- Node.js 18+ (рекомендується 20+)
-- Composer
-- NPM або Yarn
+Requirements
 
-### Встановлення
+PHP 8.2+
 
-1. **Клонувати репозиторій**
-```bash
+Node.js 18+ (recommended 20+)
+
+Composer
+
+NPM or Yarn
+
+Installation
+
+Clone the repository
+
 git clone <your-repo-url>
 cd my-lar-project
-```
 
-2. **Встановити PHP залежності**
-```bash
+
+Install PHP dependencies
+
 composer install
-```
 
-3. **Встановити Node.js залежності**
-```bash
+
+Install Node.js dependencies
+
 npm install
-```
 
-4. **Налаштувати оточення**
-```bash
+
+Set up environment
+
 cp .env.example .env
 php artisan key:generate
-```
 
-5. **Запустити міграції**
-```bash
+
+Run migrations
+
 php artisan migrate
-```
 
-## 🔧 Розробка
+🔧 Development
+Run in development mode
 
-### Запуск в режимі розробки
+🎯 Recommended (two terminals):
 
-**🎯 Рекомендований спосіб (два термінали):**
-```bash
-# Термінал 1: Laravel API сервер (порт 8000)
+# Terminal 1: Laravel API server (port 8000)
 php artisan serve
 
-# Термінал 2: Next.js dev сервер (порт 3000)
+# Terminal 2: Next.js dev server (port 3000)
 npm run dev
-```
 
-**⚡ Швидкий запуск (одна команда):**
-```bash
+
+⚡ Quick start (single command):
+
 npm run dev:all
-```
 
-### Доступ до додатку
+Application access
 
-- **Next.js Frontend**: `http://localhost:3000`
-- **Laravel API**: `http://localhost:8000`
-- **API тестування**: `http://localhost:8000/api/home`
+Next.js Frontend: http://localhost:3000
 
-## 📁 Структура проекту
+Laravel API: http://localhost:8000
 
-```
-├── app/Http/Controllers/Api/    # � API контролери Laravel
+API test: http://localhost:8000/api/home
+
+📁 Project structure
+├── app/Http/Controllers/Api/    # 🔌 Laravel API controllers
 │   └── HomeController.php
-├── pages/                       # 📄 Next.js сторінки
-│   ├── _app.tsx                # ⚙️ Кореневий компонент Next.js
-│   ├── index.tsx               # 🏠 Головна сторінка
+├── pages/                       # 📄 Next.js pages
+│   ├── _app.tsx                # ⚙️ Root Next.js component
+│   ├── index.tsx               # 🏠 Home page
 │   ├── users/
-│   │   └── index.tsx           # � Сторінка користувачів
+│   │   └── index.tsx           # 👥 Users page
 │   └── products/
-│       └── index.tsx           # 📦 Сторінка продуктів
-├── styles/                     # 🎨 Глобальні стилі
-│   └── globals.css             # 🌐 TailwindCSS
-├── routes/                     # 🛣️ Laravel роути
-│   ├── api.php                 # 🔌 API роути
-│   └── web.php                 # 🌐 Веб роути
-├── config/                     # ⚙️ Конфігурація Laravel
-├── database/                   # 🗄️ Міграції та фабрики
-└── package.json                # 📦 Next.js залежності
-```
+│       └── index.tsx           # 📦 Products page
+├── styles/                     # 🎨 Global styles
+│   └── globals.css             # 🌐 TailwindCSS styles
+├── routes/                     # 🛣️ Laravel routes
+│   ├── api.php                 # 🔌 API routes
+│   └── web.php                 # 🌐 Web routes
+├── config/                     # ⚙️ Laravel configuration
+├── database/                   # 🗄️ Migrations & factories
+└── package.json                # 📦 Next.js dependencies
 
-## 🧩 Модульна система
+🧩 Modular system
+Available pages
 
-### Доступні сторінки
+Home 🏠 — Dashboard & navigation
 
-1. **Головна** � - Дашборд та навігація
-2. **Користувачі** 👥 - Управління користувачами
-3. **Продукти** 📦 - Каталог товарів
-4. *Налаштування* ⚙️ - (планується)
+Users 👥 — User management
 
-### Створення нової сторінки
+Products 📦 — Product catalog
 
-```bash
-# 1. Створити Next.js сторінку
+Settings ⚙️ — (planned)
+
+Creating a new page
+# 1. Create a Next.js page
 touch pages/your-page.tsx
 
-# 2. Створити API ендпоінт в Laravel
+# 2. Create an API endpoint in Laravel
 php artisan make:controller Api/YourPageController
 
-# 3. Додати роути в routes/api.php
+# 3. Add routes in routes/api.php
 
-# 4. Зареєструвати роут в api.php
-```
+# 4. Register the route in api.php
 
-## 🛠 Технології
+🛠 Technologies
 
-- **Backend**: Laravel 11 (API-only)
-- **Frontend**: Next.js 15 + TypeScript + React 19
-- **Стилі**: TailwindCSS 4
-- **HTTP Client**: Fetch API
-- **Архітектура**: API-first + SSR/CSR
+Backend: Laravel 11 (API-only)
 
-## 📝 API
+Frontend: Next.js 15 + TypeScript + React 19
 
-### Основні ендпоінти
+Styles: TailwindCSS 4
 
-- `GET /api/home` - Дані головної сторінки
-- `GET /api/test-message` - Тестове повідомлення
-- `GET /api/users` - Список користувачів (планується)
-- `GET /api/products` - Список продуктів (планується)
+HTTP Client: Fetch API
 
-### Приклад відповіді API
+Architecture: API-first + SSR/CSR hybrid
 
-```json
+📝 API
+Main endpoints
+
+GET /api/home — Home page data
+
+GET /api/test-message — Test message
+
+GET /api/users — List of users (planned)
+
+GET /api/products — List of products (planned)
+
+Example API response
 {
-  "message": "Laravel API працює!",
+  "message": "Laravel API is working!",
   "frontend": "http://localhost:3000",
   "api": "http://localhost:8000/api"
 }
-```
 
-## 🚨 Вирішення проблем
-
-### Проблема з API підключенням
-
-```bash
-# Перевірити чи працює Laravel сервер
+🚨 Troubleshooting
+API connection issues
+# Check if Laravel server is running
 php artisan route:list
 
-# Перевірити API роути
+# Check API routes
 curl http://localhost:8000/api/home
-```
 
-### Проблеми з Next.js
-
-```bash
-# Очистити кеш Next.js
+Next.js issues
+# Clear Next.js cache
 rm -rf .next
 npm run dev
-```
 
-### Проблеми з залежностями
-
-```bash
-# Переустановити залежності
+Dependency issues
+# Reinstall dependencies
 rm -rf node_modules package-lock.json
 npm install
-```
-
-## 🎯 Особливості
-
-- ✅ API-first архітектура з Laravel
-- ✅ Server-Side Rendering (SSR) з Next.js
-- ✅ TypeScript підтримка
-- ✅ Responsive дизайн з TailwindCSS
-- ✅ Роздільні сервери для API та Frontend
-- ✅ Hot Module Replacement (HMR)
-- ✅ Готовність до продакшн деплою
-
-## 📄 Ліцензія
-
-Цей проект є відкритим програмним забезпеченням, ліцензованим під [MIT ліцензією](https://opensource.org/licenses/MIT).
