@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Authors and Books</title>
+    <title>{{ $author->name }}'s Books</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,118 +14,70 @@
             text-align: center;
             color: #2c3e50;
             margin-bottom: 2em;
-            font-size: 2rem;
         }
 
-        .logout-form {
-            text-align: center;
-            margin-bottom: 2em;
-        }
-
-        .logout-btn {
-            background-color: #e3342f;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .logout-btn:hover {
-            background-color: #cc1f1a;
-        }
-
-        .author {
+        ul {
             background: #fff;
             padding: 1em 1.5em;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1em;
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
+            width: 60%;
+            margin: 0 auto;
         }
 
-        .author:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        li {
+            padding: 0.5em 0;
+            border-bottom: 1px solid #ddd;
         }
 
-        .author strong {
-            font-size: 1.2rem;
-            color: #34495e;
+        li:last-child {
+            border-bottom: none;
         }
 
-        .books {
-            list-style-type: disc;
-            margin-top: 0.5em;
-            margin-left: 1.5em;
-            padding-left: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease, opacity 0.4s ease;
+        a.back {
+            display: inline-block;
+            margin-top: 2em;
+            text-decoration: none;
+            color: #3490dc;
+            font-weight: bold;
         }
 
-        .author:hover .books {
-            max-height: 500px; /* enough to show all books */
-            opacity: 1;
-        }
-
-        .books li {
-            padding: 0.2em 0;
-            font-size: 1rem;
-            color: #555;
-        }
-
-        .books li::before {
-            content: "📖 ";
-        }
-
-        .books p {
-            margin: 0;
-            color: #999;
-            font-style: italic;
+        a.back:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
-    {{-- Logout button --}}
-    <div class="logout-form">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
+    <h1>Books by {{ $author->name }}</h1>
+    <div style="text-align: center;">
+        <a href="{{ route('authors') }}" class="back">← Back to all authors</a>
     </div>
 
-    <h1>Library Catalog</h1>
-<!--
-    @foreach($authors as $author)
-        <div class="author">
-            <strong>{{ $author->name }}</strong>
-
-            @if($author->books->count() > 0)
-                <!--<ul class="books">
-                    @foreach($author->books as $book)
-                        <li>{{ $book->title }} ({{ $book->year }})</li>
-                    @endforeach
-                </ul>
-            @else
-                <ul class="books">
-                    <p>No books available</p>
-                </ul>
-            @endif
-        </div>
-    @endforeach -->
-    @foreach($authors as $author)
-    <div class="author">
-        <a href="{{ route('authors.show', $author->id) }}" style="text-decoration: none; color: inherit;">
-            <strong>{{ $author->name }}</strong>
-        </a>
-    </div>
-@endforeach
+    @if($author->books->count() > 0)
+        <ul>
+    @foreach($author->books as $book)
+        <li>
+            {{ $book->title }} ({{ $book->year }})
+            <a href="{{ route('books.edit', $book->id) }}"
+               style="margin-left: 10px; color: #3490dc; font-weight: bold;">
+               ✏️ Edit
+            </a>
+            <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this book?');">
+                    Delete
+                </button>
+            </form>
+            
+        </li>
+        
+    @endforeach
+</ul>
+<a href="{{ route('books.create', $author->id) }}">+ Add New Book</a>
+    @else
+        <a href="{{ route('books.create', $author->id) }}">+ Add New Book</a>
+    @endif
 
 </body>
 </html>

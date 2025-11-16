@@ -51,11 +51,14 @@
     <div class="card">
         <h1>Welcome to the Library Catalog</h1>
         <p>Explore authors and their books. Please log in to access the catalog.</p>
-         @guest
         <a href="{{ route('login') }}" class="btn">Login</a>
-    @else
-        <a href="{{ route('books') }}" class="btn">Go to Catalog</a>
-    @endguest
+        <a href="{{ route('catalog') }}" class="btn">Go to Catalog</a>
+        <div class="logout-form">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
     </div>
 </body>
 </html>
