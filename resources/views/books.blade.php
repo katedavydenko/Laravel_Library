@@ -57,7 +57,7 @@
         <ul>
     @foreach($author->books as $book)
         <li>
-            {{ $book->title }} ({{ $book->year }})
+            {{ $book->title }} ({{ $book->year }})  - {{ $book->genres->count() ? $book->genres->pluck('name')->join(', ') : 'No genre' }}
             <a href="{{ route('books.edit', $book->id) }}"
                style="margin-left: 10px; color: #3490dc; font-weight: bold;">
                ✏️ Edit
@@ -74,7 +74,7 @@
         
     @endforeach
 </ul>
-<a href="{{ route('books.create', $author->id) }}">+ Add New Book</a>
+<a href="{{ route('books.create', $author->id) }}" class = "btn">+ Add New Book</a>
     @else
         <a href="{{ route('books.create', $author->id) }}">+ Add New Book</a>
     @endif

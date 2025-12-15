@@ -38,13 +38,15 @@
         }
 
         .author {
-            background: #fff;
+            display:flex;
+          
+            background: #95d59bff;
             padding: 1em 1.5em;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-bottom: 1em;
             transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
+            
         }
 
         .author:hover {

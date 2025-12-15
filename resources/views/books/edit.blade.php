@@ -26,6 +26,30 @@
 
     <label>Year:</label><br>
     <input type="number" name="year" value="{{ old('year', $book->year) }}"><br><br>
+    <label>Genre:</label>
+     <div class="genres">
+      <select name="genres[]" multiple>
+    @foreach($genres as $genre)
+        <option value="{{ $genre->id }}" 
+            {{ in_array($genre->id, $book->genres->pluck('id')->toArray() ?? []) ? 'selected' : '' }}>
+            {{ $genre->name }}
+        </option>
+    @endforeach
+    </select>
+    <label>Publisher:</label><br>
+<div class="publisher">
+    <select name="publisher_id" required>
+        <option value="">-- Select Publisher --</option>
+        @foreach($publishers as $publisher)
+            <option value="{{ $publisher->id }}" 
+                {{ old('publisher_id', $book->publisher_id) == $publisher->id ? 'selected' : '' }}>
+                {{ $publisher->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
+<br>
+    </div>
 
     <button type="submit">Save</button>
 </form>

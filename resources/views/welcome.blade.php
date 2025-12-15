@@ -35,13 +35,23 @@
         .btn {
             background-color: #3490dc;
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 10px 15px;
+            border-radius: 0.5px;
             text-decoration: none;
             font-weight: bold;
             transition: background 0.3s;
         }
+        .btns {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
 
+        }
+        .top-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
         .btn:hover {
             background-color: #2779bd;
         }
@@ -51,14 +61,18 @@
     <div class="card">
         <h1>Welcome to the Library Catalog</h1>
         <p>Explore authors and their books. Please log in to access the catalog.</p>
-        <a href="{{ route('login') }}" class="btn">Login</a>
-        <a href="{{ route('catalog') }}" class="btn">Go to Catalog</a>
-        <div class="logout-form">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    </div>
+        <div class= "btns" >
+            <div class = "top-btns">
+                <a href="{{ route('login') }}" class="btn">Login</a>
+                <a href="{{ route('catalog') }}" class="btn">Go to Catalog</a>
+            </div>
+            <div class = "logout-btn">
+                <form  method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button  class ="btn" type="submit" >Logout</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;  
+use App\Models\Genre;  
+use App\Models\Publisher;
 
 class AuthorController extends Controller
 {
-    public function guestView()
-    {
-        $authors = Author::with('books')->get();
-        return view('authors.guest', compact('authors'));
-    }
-    
+       
+
+
     public function index()
     {
         $authors = Author::with('books')->get();
